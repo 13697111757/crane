@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>本公司专业检测工程机械设备</title>
+    <!-- 引入 Tailwind CSS 用于快速构建美观的响应式UI -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 隐藏滚动条 */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col max-w-md mx-auto shadow-xl relative border-x border-gray-200">
+
+    <!-- 顶部导航栏 -->
+    <header class="bg-blue-600 text-white px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow-sm">
+        <div class="flex items-center space-x-3">
+            <button id="menuBtn" class="focus:outline-none p-1 hover:bg-blue-700 rounded transition-colors">
+                <!-- 汉堡菜单图标 -->
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <span id="headerTitle" class="font-bold text-sm sm:text-base tracking-wide">专业检测工程机械设备</span>
+        </div>
+        <!-- 侧边快捷访问 AI 按钮 -->
+        <button onclick="switchPage('ai-chat')" class="flex items-center space-x-1 bg-amber-500 hover:bg-amber-600 text-white px-2 py-1 rounded-full text-xs font-semibold shadow transition-transform active:scale-95">
+            <span>✨ 安全AI</span>
+        </button>
+    </header>
+
+    <!-- 侧边抽屉菜单 -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 bg-zinc-900 text-gray-300 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out shadow-2xl">
+        <div class="p-5 border-b border-zinc-800 flex justify-between items-center text-white">
+            <span class="font-bold tracking-wider">快捷导航</span>
+            <button id="closeMenuBtn" class="text-gray-400 hover:text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <nav class="mt-4">
+            <a href="#" onclick="switchPage('home')" class="flex items-center px-6 py-4 hover:bg-zinc-800 hover:text-white transition-colors">
+                <span class="mr-3">🏠</span> 首页
+            </a>
+            <a href="#" onclick="switchPage('query')" class="flex items-center px-6 py-4 hover:bg-zinc-800 hover:text-white transition-colors">
+                <span class="mr-3">🔍</span> 报告查询
+            </a>
+            <a href="#" onclick="switchPage('ai-chat')" class="flex items-center px-6 py-4 hover:bg-zinc-800 hover:text-white transition-colors text-amber-400 font-medium">
+                <span class="mr-3">✨</span> 智能安全助手
+            </a>
+            <a href="#" onclick="switchPage('about')" class="flex items-center px-6 py-4 hover:bg-zinc-800 hover:text-white transition-colors">
+                <span class="mr-3">ℹ️</span> 关于我们
+            </a>
+            <a href="#" onclick="switchPage('service')" class="flex items-center px-6 py-4 hover:bg-zinc-800 hover:text-white transition-colors">
+                <span class="mr-3">🛠️</span> 公司检测服务范围
+            </a>
+        </nav>
+    </div>
+    <!-- 侧边栏遮罩层 -->
+    <div id="sidebarOverlay" class="fixed inset-0 bg-black bg-opacity-60 z-40 hidden"></div>
+
+    <!-- 主体内容区域 -->
+    <main class="flex-grow pb-12">
+
+        <!-- 页面一：首页 (Home) -->
+        <section id="page-home" class="page-section">
+            <!-- 轮播图/大图区域 -->
+            <div class="relative w-full h-52 bg-gray-100 overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-50 to-orange-50 flex flex-col items-center justify-center p-4">
+                    <div class="w-48 h-28 relative">
+                        <!-- 精致矢量吊车动画视觉占位 -->
+                        <div class="absolute bottom-2 left-6 w-16 h-10 bg-yellow-500 rounded-lg shadow-md border-2 border-yellow-600"></div>
+                        <div class="absolute bottom-12 left-12 w-6 h-6 bg-yellow-500 rounded-full border-2 border-yellow-600"></div>
+                        <div class="absolute bottom-2 left-10 w-24 h-2 bg-zinc-700 rounded-full"></div>
+                        <div class="absolute bottom-0 left-8 w-6 h-6 bg-zinc-800 rounded-full border-4 border-gray-400"></div>
+                        <div class="absolute bottom-0 left-16 w-6 h-6 bg-zinc-800 rounded-full border-4 border-gray-400"></div>
+                        <div class="absolute bottom-6 left-20 w-16 h-1 bg-yellow-600 transform rotate-12 origin-left"></div>
+                        <div class="absolute bottom-10 left-32 w-12 h-8 bg-yellow-500 rounded shadow border-2 border-yellow-600"></div>
+                    </div>
+                    <div class="absolute bottom-3 flex space-x-1.5">
+                        <span class="w-2 h-2 rounded-full bg-red-500"></span>
+                        <span class="w-2 h-2 rounded-full bg-gray-300"></span>
+                        <span class="w-2 h-2 rounded-full bg-gray-300"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 查询报告动作按钮 -->
+            <div class="p-6 text-center border-b border-gray-100 bg-white">
+                <button onclick="switchPage('query')" class="w-full max-w-xs bg-red-500 hover:bg-red-600 text-white font-semibold py-3 px-8 rounded shadow-md transition-all active:scale-95">
+                    查询报告
+                </button>
+            </div>
+
+            <!-- AI 快捷体验入口 -->
+            <div class="m-4 p-4 bg-gradient-to-r from-amber-50 to-orange-50 rounded-xl border border-amber-200">
+                <div class="flex items-center space-x-2 text-amber-800 font-bold mb-1">
+                    <span>✨</span>
+                    <span>起重机 AI 智能安全助手已上线</span>
+                </div>
+                <p class="text-xs text-amber-700 mb-3 leading-relaxed">
+                    支持在检验报告解读、安全操作指南、大风天气避险及设备警报释义等方面为您提供专业指导。
+                </p>
+                <button onclick="switchPage('ai-chat')" class="bg-amber-500 hover:bg-amber-600 text-white text-xs font-semibold py-2 px-4 rounded-lg shadow inline-flex items-center space-x-1 transition-all active:scale-95">
+                    <span>✨ 立即向 AI 提问</span>
+                </button>
+            </div>
+
+            <!-- 服务理念 -->
+            <div class="p-5 bg-white mt-3">
+                <div class="flex items-center space-x-2 border-l-4 border-blue-500 pl-2 mb-3">
+                    <h3 class="font-bold text-blue-600 text-base">服务理念</h3>
+                </div>
+                <p class="text-sm text-gray-600 leading-relaxed text-justify">
+                    以诚信赢取客户，以精品树品牌，以管理出效益，以创新促发展。客户上，用心服务，精益求精。创新优质建筑的精品，创新求实的精神，热情服务的承诺，良好诚实的信誉。安全管理制度化，安全制度标准化，现场布置条理化，机料摆放定置化，作业行为规范化，环境影响最小化。以人为本；不断创新。
+                </p>
+            </div>
+
+            <!-- 关于我们 -->
+            <div class="p-5 bg-white mt-3">
+                <div class="flex items-center space-x-2 border-l-4 border-blue-500 pl-2 mb-3">
+                    <h3 class="font-bold text-blue-600 text-base">关于我们</h3>
+                </div>
+                <p class="text-sm text-gray-600 leading-relaxed text-justify">
+                    本公司是经国家质检总局核准的专业特种设备检验检测机构，长期致力于汽车起重机、履带起重机、随车起重机等工程机械的年度安全技术检验，出具行业权威检测报告，确保每一台机械安全上岗。
+                </p>
+            </div>
+        </section>
+
+
+        <!-- 页面二：报告查询页 (Query Form) -->
+        <section id="page-query" class="page-section hidden">
+            <!-- 头部背景图 -->
+            <div class="w-full h-40 bg-cover bg-center relative" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1579684389782-64d84b5e901a?auto=format&fit=crop&q=80&w=600');">
+                <div class="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
+                    <h2 class="text-white text-lg font-bold tracking-wider mb-1">检验结论 合格</h2>
+                    <p class="text-gray-200 text-xs">权威检测 · 扫码直连 · 安全合规</p>
+                </div>
+            </div>
+
+            <!-- 智能识别模块（OCR导入） -->
+            <div class="m-4 p-4 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl border border-blue-200 text-center">
+                <div class="flex items-center justify-center space-x-2 font-bold text-blue-800 text-sm mb-2">
+                    <span>✨</span>
+                    <span>AI 拍照自动导入报告</span>
+                </div>
+                <p class="text-xs text-blue-600 mb-3">您可以直接给检测报告纸张或屏幕拍张照，AI 会自动帮您识别并搜索报告！</p>
+                
+                <label class="inline-block bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold py-2 px-4 rounded-lg shadow cursor-pointer transition-all active:scale-95">
+                    <span>📸 ✨ 上传/拍张报告照片</span>
+                    <input type="file" id="ocrFileInput" accept="image/*" class="hidden">
+                </label>
+                <!-- 识别过程状态展示 -->
+                <div id="ocrLoading" class="hidden mt-3 text-xs text-blue-600 flex items-center justify-center space-x-2">
+                    <svg class="animate-spin h-4 w-4 text-blue-600" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    <span>正在进行 AI 图像文字安全审计提取，请稍候...</span>
+                </div>
+            </div>
+
+            <div class="p-5 bg-white shadow-sm">
+                <div class="border-b border-gray-100 pb-3 mb-5">
+                    <h3 class="text-gray-700 font-bold border-l-4 border-blue-500 pl-2">手动输入编号查询</h3>
+                </div>
+
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">
+                            <span class="text-red-500 font-bold">*</span> 报告编号:
+                        </label>
+                        <input type="text" id="reportNoInput" placeholder="请输入报告编号" class="w-full px-4 py-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm">
+                        <div class="text-xs text-gray-400 mt-2 space-y-1">
+                            <p>测试编号列表（点击可复制）：</p>
+                            <p>1️⃣ <span class="font-mono text-blue-600 font-bold select-all cursor-pointer">KK202604141N</span> (中联牌 - 鄂 FTH011)</p>
+                            <p>2️⃣ <span class="font-mono text-blue-600 font-bold select-all cursor-pointer">KK202604142M</span> (徐工牌 - 鄂 FUA888)</p>
+                            <p>3️⃣ <span class="font-mono text-blue-600 font-bold select-all cursor-pointer">KK202604143L</span> (三一牌 - 鄂 FVB666)</p>
+                        </div>
+                    </div>
+
+                    <button id="searchSubmitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded shadow transition-all active:scale-95">
+                        查 询
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 页面三：查询结果页 (Result Details) -->
+        <section id="page-result" class="page-section hidden">
+            <div class="p-4">
+                <div class="flex items-center space-x-2 border-l-4 border-blue-500 pl-2 mb-4 justify-between">
+                    <h3 class="font-bold text-gray-700 text-base">查询结果</h3>
+                    <span class="bg-green-100 text-green-700 text-xs px-2 py-1 rounded font-semibold">数据核对已通过</span>
+                </div>
+
+                <!-- 结果表格 -->
+                <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden">
+                    <table class="w-full text-sm border-collapse text-left">
+                        <tbody>
+                            <tr class="border-b border-gray-100">
+                                <td class="w-1/3 px-4 py-3 bg-gray-50 font-medium text-gray-500 border-r border-gray-100">报告编号</td>
+                                <td id="res_reportNo" class="px-4 py-3 text-gray-800 font-mono">--</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="px-4 py-3 bg-gray-50 font-medium text-gray-500 border-r border-gray-100">委托单位</td>
+                                <td id="res_entrustUnit" class="px-4 py-3 text-gray-800">--</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="px-4 py-3 bg-gray-50 font-medium text-gray-500 border-r border-gray-100">设备名称/设备型号</td>
+                                <td id="res_deviceModel" class="px-4 py-3 text-gray-800">--</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="px-4 py-3 bg-gray-50 font-medium text-gray-500 border-r border-gray-100">车牌照号/产品编号</td>
+                                <td id="res_licensePlate" class="px-4 py-3 text-gray-800 font-semibold text-blue-600">--</td>
+                            </tr>
+                            <tr class="border-b border-gray-100">
+                                <td class="px-4 py-3 bg-gray-50 font-medium text-gray-500 border-r border-gray-100">检验日期</td>
+                                <td id="res_inspectDate" class="px-4 py-3 text-gray-800">--</td>
+                            </tr>
+                            <tr>
+                                <td class="px-4 py-3 bg-gray-50 font-medium text-gray-500 border-r border-gray-100">车辆行驶证/车辆图片<br><span class="text-xs text-gray-400 font-normal">(合格证/铭牌)</span></td>
+                                <td class="px-4 py-3">
+                                    <div class="flex flex-col space-y-2 mt-1">
+                                        <!-- 动态行驶证卡片 -->
+                                        <div class="w-full border border-teal-200 bg-teal-50 p-2 rounded shadow-sm text-[10px] text-teal-800 font-mono relative overflow-hidden">
+                                            <div class="absolute top-1 right-1 text-teal-300 font-bold rotate-12 text-xs">中华人民共和国</div>
+                                            <div class="font-bold mb-1 text-xs">行驶证 汽车起重机检验凭证</div>
+                                            <div id="card_reportNo">编号: --</div>
+                                            <div id="card_licensePlate">车牌: --</div>
+                                            <div id="card_expireDate">有效期至: --</div>
+                                        </div>
+                                        <!-- 动态物理铭牌卡片 -->
+                                        <div class="w-full border border-gray-300 bg-zinc-100 p-2 rounded shadow-sm text-[10px] text-zinc-700 font-mono">
+                                            <div id="card_manufacturer" class="font-bold mb-1 text-xs border-b border-gray-300 pb-0.5">-- 制造铭牌</div>
+                                            <div id="card_deviceModel">型号: --</div>
+                                            <div id="card_vin">出厂编号: --</div>
+                                            <div id="card_weight">整备质量: --</div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ✨ AI 智能深度解读板块 -->
+                <div class="mt-4 p-4 bg-gradient-to-br from-indigo-50 via-purple-50 to-blue-50 rounded-xl border border-indigo-200 shadow-sm">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-lg">✨</span>
+                            <span class="font-bold text-indigo-900 text-sm">AI 报告深度解读 & 安全合规诊断</span>
+                        </div>
+                        <button id="aiInterpretBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-semibold py-1.5 px-3 rounded shadow transition-all active:scale-95 flex items-center space-x-1">
+                            <span>✨ 一键解读</span>
+                        </button>
+                    </div>
+
+                    <!-- AI 解读显示区 -->
+                    <div id="aiInterpretationArea" class="hidden">
+                        <div id="aiInterpretSpinner" class="flex flex-col items-center justify-center py-6 text-indigo-600 space-y-2">
+                            <svg class="animate-spin h-6 w-6 text-indigo-600" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            <span class="text-xs font-semibold">正在连线 AI 进行起重特种设备规则链校对，请稍候...</span>
+                        </div>
+                        <div id="aiInterpretContent" class="text-xs text-gray-700 leading-relaxed bg-white p-3 rounded-lg border border-indigo-100 prose prose-indigo max-h-64 overflow-y-auto no-scrollbar">
+                            <!-- AI解读结果将被插入此处 -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 返回重试按钮 -->
+                <div class="mt-6 flex space-x-3">
+                    <button onclick="switchPage('query')" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2.5 rounded text-center text-sm transition-colors">
+                        返回重新查询
+                    </button>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 页面四：关于我们 (About Page) -->
+        <section id="page-about" class="page-section hidden">
+            <div class="p-5 bg-white">
+                <div class="flex items-center space-x-2 border-l-4 border-blue-500 pl-2 mb-4">
+                    <h3 class="font-bold text-gray-700 text-base">关于我们</h3>
+                </div>
+                <div class="prose prose-sm text-gray-600 space-y-3">
+                    <p>江苏耿盾检测技术有限公司是经国家准许设立的高新技术检测机构，为建筑工程及特种设备、工程机械等提供一站式安全检测和合规论证。</p>
+                    <p>公司拥有一支高素质、经验丰富的检测工程队伍，配备先进的检测仪器，秉持“安全第一、预防为主、客观公正、服务社会”的原则开展每一项业务。</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 页面五：检测范围 (Service Page) -->
+        <section id="page-service" class="page-section hidden">
+            <div class="p-5 bg-white">
+                <div class="flex items-center space-x-2 border-l-4 border-blue-500 pl-2 mb-4">
+                    <h3 class="font-bold text-gray-700 text-base">公司检测服务范围</h3>
+                </div>
+                <ul class="space-y-3 text-sm text-gray-600">
+                    <li class="flex items-center space-x-2 py-1 border-b border-gray-100">
+                        <span class="text-blue-500">▶</span> <span>汽车起重机、履带起重机安全性能年检</span>
+                    </li>
+                    <li class="flex items-center space-x-2 py-1 border-b border-gray-100">
+                        <span class="text-blue-500">▶</span> <span>挖掘机械、装载机械技术状况评估</span>
+                    </li>
+                    <li class="flex items-center space-x-2 py-1 border-b border-gray-100">
+                        <span class="text-blue-500">▶</span> <span>工程车辆无损探伤、结构强度评估检验</span>
+                    </li>
+                    <li class="flex items-center space-x-2 py-1 border-b border-gray-100">
+                        <span class="text-blue-500">▶</span> <span>特种作业人员委托检验、安全保障咨询服务</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
+        <!-- 页面六：✨ 智能安全问答助手页面 (AI Chat Page) -->
+        <section id="page-ai-chat" class="page-section hidden">
+            <div class="p-4 flex flex-col h-[75vh]">
+                <!-- 头部 -->
+                <div class="flex items-center space-x-2 border-l-4 border-amber-500 pl-2 mb-3">
+                    <h3 class="font-bold text-gray-700 text-base">✨ 起重机 AI 安全问答助手</h3>
+                </div>
+                <p class="text-xs text-gray-500 mb-3">专门帮助吊车司机与安全生产负责人，解答特种设备的规程与现场操作疑问。</p>
+
+                <!-- 预设快速提问标签 -->
+                <div class="flex flex-wrap gap-2 mb-3">
+                    <button onclick="sendQuickPrompt('大风天气吊装，几级风必须停止作业？')" class="text-[11px] bg-amber-50 text-amber-800 border border-amber-200 px-2 py-1 rounded hover:bg-amber-100 transition-colors">
+                        ❓ 几级风停工？
+                    </button>
+                    <button onclick="sendQuickPrompt('吊装作业中经常说的“十不吊”是指什么？')" class="text-[11px] bg-amber-50 text-amber-800 border border-amber-200 px-2 py-1 rounded hover:bg-amber-100 transition-colors">
+                        ❓ 什么是“十不吊”？
+                    </button>
+                    <button onclick="sendQuickPrompt('起重机的液压油管表面出现微小裂纹是否必须更换？')" class="text-[11px] bg-amber-50 text-amber-800 border border-amber-200 px-2 py-1 rounded hover:bg-amber-100 transition-colors">
+                        ❓ 裂纹油管需要换吗？
+                    </button>
+                </div>
+
+                <!-- 聊天对话框 -->
+                <div id="chatHistory" class="flex-grow border border-gray-200 rounded-lg p-3 bg-white overflow-y-auto no-scrollbar space-y-3 shadow-inner">
+                    <!-- AI 欢迎信 -->
+                    <div class="flex items-start space-x-2">
+                        <div class="w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs flex-shrink-0">AI</div>
+                        <div class="bg-amber-50 text-amber-900 p-2.5 rounded-lg rounded-tl-none text-xs max-w-[85%] shadow-sm">
+                            您好！我是您的起重机安全智能助手。您可以向我提问关于车辆维护、钢丝绳磨损、液压系统、特种设备检验标准以及在各等级风力下的吊装规程等任何技术问题！
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 对话输入区 -->
+                <div class="mt-3 flex space-x-2">
+                    <input type="text" id="aiQueryInput" placeholder="输入您遇到的工程安全、吊装规程问题..." class="flex-grow px-3 py-2 border border-gray-300 rounded text-xs focus:outline-none focus:ring-1 focus:ring-amber-500 focus:border-amber-500">
+                    <button id="sendAiQueryBtn" class="bg-amber-500 hover:bg-amber-600 text-white font-semibold text-xs px-4 py-2 rounded transition-all active:scale-95">
+                        ✨ 提问
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- 底部版权栏 -->
+    <footer class="bg-gray-100 text-center py-4 text-xs text-gray-400 mt-auto border-t border-gray-200">
+        &copy;2026 本公司专业检测工程机械设备
+    </footer>
+
+    <!-- 简易非阻塞提示弹窗组件 -->
+    <div id="toast" class="fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-zinc-800 text-white text-xs px-4 py-2.5 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 z-50"></div>
+
+    <!-- 核心业务 JavaScript 及 Gemini 集成 -->
+    <script>
+        // 1. 本地数据库配置：包含 3 个相互独立的不同车牌号及车辆细节配置记录
+        const mockDatabase = {
+            "KK202604141N": {
+                reportNo: "KK202604141N",
+                entrustUnit: "保康县永佳润滑油商行",
+                deviceModel: "中联重科牌 ZLJ5304JQZ25V 汽车起重机",
+                licensePlate: "鄂 FTH011",
+                inspectDate: "2026年04月14日",
+                vin: "lS0R2028J0107834",
+                weight: "23410kg",
+                manufacturer: "中联重科"
+            },
+            "KK202604142M": {
+                reportNo: "KK202604142M",
+                entrustUnit: "襄阳市平安起重装卸有限公司",
+                deviceModel: "徐工牌 XCT25L5 汽车起重机",
+                licensePlate: "鄂 FUA888",
+                inspectDate: "2026年05月20日",
+                vin: "lS0R2029K0208945",
+                weight: "32400kg",
+                manufacturer: "徐工集团"
+            },
+            "KK202604143L": {
+                reportNo: "KK202604143L",
+                entrustUnit: "宜昌市路桥建设集团有限公司",
+                deviceModel: "三一重工牌 STC250H5 汽车起重机",
+                licensePlate: "鄂 FVB666",
+                inspectDate: "2026年06月11日",
+                vin: "lS0R2030L0309123",
+                weight: "33000kg",
+                manufacturer: "三一重工"
+            }
+        };
+
+        let currentRetrievedRecord = null; // 缓存当前查询成功的记录
+
+        // 2. 自定义提示框
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.innerText = message;
+            toast.classList.remove('opacity-0');
+            toast.classList.add('opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('opacity-100');
+                toast.classList.add('opacity-0');
+            }, 2500);
+        }
+
+        // 3. 带有指数退避逻辑的 Gemini API 发射器
+        async function fetchGemini(payload) {
+            const apiKey = ""; // 运行时由平台安全框架自动注入
+            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            
+            let delay = 1000;
+            const maxRetries = 5;
+
+            for (let i = 0; i < maxRetries; i++) {
+                try {
+                    const response = await fetch(url, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        const data = await response.json();
+                        return data;
+                    }
+                } catch (err) {
+                    // 发生网络闪断时，保持指数退避重试，静默不记录到控制台
+                }
+                await new Promise(resolve => setTimeout(resolve, delay));
+                delay *= 2; // 1s, 2s, 4s, 8s, 16s
+            }
+            throw new Error("服务目前繁忙，未能与 AI 连接。请稍后重试。");
+        }
+
+        // 4. 页面路由切换
+        function switchPage(pageId) {
+            document.querySelectorAll('.page-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            const targetPage = document.getElementById('page-' + pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                window.scrollTo(0, 0);
+            }
+
+            // 同步顶部状态栏文本
+            const headerTitle = document.getElementById('headerTitle');
+            if (pageId === 'home') {
+                headerTitle.innerText = "专业检测工程机械设备";
+            } else if (pageId === 'query') {
+                headerTitle.innerText = "报告查询 - 专业设备年检";
+            } else if (pageId === 'result') {
+                headerTitle.innerText = "查询结果 - 江苏耿盾检测";
+            } else if (pageId === 'about') {
+                headerTitle.innerText = "关于我们";
+            } else if (pageId === 'service') {
+                headerTitle.innerText = "公司检测服务范围";
+            } else if (pageId === 'ai-chat') {
+                headerTitle.innerText = "✨ 安全 AI 智能助手";
+            }
+
+            toggleSidebar(false);
+        }
+
+        // 5. 执行报告查询
+        function executeQuery(reportNo) {
+            if (!reportNo || reportNo.trim() === "") {
+                showToast("请输入需要查询的报告编号");
+                return;
+            }
+
+            const cleanNo = reportNo.trim().toUpperCase();
+            const record = mockDatabase[cleanNo];
+
+            if (record) {
+                currentRetrievedRecord = record; // 缓存成功记录
+                
+                // 渲染主表格数据
+                document.getElementById('res_reportNo').innerText = record.reportNo;
+                document.getElementById('res_entrustUnit').innerText = record.entrustUnit;
+                document.getElementById('res_deviceModel').innerText = record.deviceModel;
+                document.getElementById('res_licensePlate').innerText = record.licensePlate;
+                document.getElementById('res_inspectDate').innerText = record.inspectDate;
+
+                // 渲染动态电子行驶证卡片数据
+                document.getElementById('card_reportNo').innerText = "编号: " + record.reportNo;
+                document.getElementById('card_licensePlate').innerText = "车牌: " + record.licensePlate;
+                
+                // 计算有效期 (至次年对应检验日期)
+                try {
+                    const match = record.inspectDate.match(/^(\d{4})年(\d{2})月(\d{2})日/);
+                    if (match) {
+                        const nextYear = parseInt(match[1]) + 1;
+                        document.getElementById('card_expireDate').innerText = `有效期至: ${nextYear}年${match[2]}月${match[3]}日`;
+                    } else {
+                        document.getElementById('card_expireDate').innerText = "有效期至: 2027年04月14日";
+                    }
+                } catch(e) {
+                    document.getElementById('card_expireDate').innerText = "有效期至: 2027年04月14日";
+                }
+
+                // 渲染物理制造铭牌数据
+                document.getElementById('card_manufacturer').innerText = record.manufacturer + " 制造铭牌";
+                document.getElementById('card_deviceModel').innerText = "型号: " + record.deviceModel.replace(record.manufacturer, "").replace("牌", "").trim();
+                document.getElementById('card_vin').innerText = "出厂编号: " + record.vin;
+                document.getElementById('card_weight').innerText = "整备质量: " + record.weight;
+
+                // 重置 AI 解读区域状态
+                document.getElementById('aiInterpretationArea').classList.add('hidden');
+                document.getElementById('aiInterpretContent').innerText = "";
+
+                switchPage('result');
+            } else {
+                showToast("未查询到此编号的检测报告，请核对后重试");
+            }
+        }
+
+        // 6. AI 功能一：一键自动解读起重机报告 ✨
+        async function runReportInterpretation() {
+            if (!currentRetrievedRecord) return;
+            
+            const area = document.getElementById('aiInterpretationArea');
+            const spinner = document.getElementById('aiInterpretSpinner');
+            const targetDiv = document.getElementById('aiInterpretContent');
+
+            area.classList.remove('hidden');
+            spinner.classList.remove('hidden');
+            targetDiv.innerText = "";
+
+            const systemPrompt = "你是一个国家特种设备检验标准专家、起重吊装资深安全官。请分析用户提供的车辆起重机报告参数，给出通俗、易懂的行业标准解读、潜在风险、以及该型号起重机的起重作业安全红线指引。回答要求结构清晰、排版专业，直接用中文作答。";
+            const userText = `报告数据如下：
+            - 报告编号：${currentRetrievedRecord.reportNo}
+            - 委托单位：${currentRetrievedRecord.entrustUnit}
+            - 设备名称/型号：${currentRetrievedRecord.deviceModel}
+            - 牌照/产品编号：${currentRetrievedRecord.licensePlate}
+            - 检验日期：${currentRetrievedRecord.inspectDate}
+            根据这些数据，请详细解读车辆状况，并制定一份针对此台吊车师傅的操作防范和保养建议清单。`;
+
+            const payload = {
+                contents: [{ parts: [{ text: userText }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            try {
+                const responseData = await fetchGemini(payload);
+                const aiResult = responseData.candidates?.[0]?.content?.parts?.[0]?.text;
+                if (aiResult) {
+                    spinner.classList.add('hidden');
+                    targetDiv.innerHTML = aiResult.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+                } else {
+                    throw new Error();
+                }
+            } catch (err) {
+                spinner.classList.add('hidden');
+                targetDiv.innerText = "解读失败，可能是网络问题。请重新点击一键解读试一试。";
+                showToast("AI 服务未能连接成功");
+            }
+        }
+
+        // 7. AI 功能二：智能安全问答助手 ✨
+        async function sendAiChatMessage() {
+            const input = document.getElementById('aiQueryInput');
+            const query = input.value.trim();
+            if (!query) return;
+
+            appendChatMessage("user", query);
+            input.value = "";
+
+            const aiBubbleId = appendChatMessage("ai-pending", "正在查阅起重机安全技术规范...");
+
+            const systemPrompt = "你是一个起重吊装与建筑特种设备（汽车起重机、履带吊等）的安全专家及规范解答机器人。请只解答与工程机械、吊装、钢丝绳安全、限位器、吊钩规范、液压传动、大风气象作业红线等相关的安全、技术、检修、法规和法规相关问题。保持回答客观、规范、符合《GB 6067 起重机械安全规程》系列国家标准，尽可能提供简洁明确的实操步骤。";
+            const payload = {
+                contents: [{ parts: [{ text: query }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] }
+            };
+
+            try {
+                const responseData = await fetchGemini(payload);
+                const aiAnswer = responseData.candidates?.[0]?.content?.parts?.[0]?.text;
+                removePendingBubble(aiBubbleId);
+                if (aiAnswer) {
+                    appendChatMessage("ai", aiAnswer);
+                } else {
+                    appendChatMessage("ai", "我没听清，您能换个问法吗？");
+                }
+            } catch (err) {
+                removePendingBubble(aiBubbleId);
+                appendChatMessage("ai", "连线安全 AI 失败，请检查网络后再提问。");
+                showToast("连接 AI 超时");
+            }
+        }
+
+        // 辅助：渲染消息到聊天历史
+        function appendChatMessage(sender, text) {
+            const chatHistory = document.getElementById('chatHistory');
+            const container = document.createElement('div');
+            container.className = "flex items-start space-x-2";
+            const bubbleId = "b_" + Date.now() + Math.random().toString(36).substr(2, 5);
+            container.setAttribute("id", bubbleId);
+
+            if (sender === "user") {
+                container.className = "flex items-start space-x-2 justify-end";
+                container.innerHTML = `
+                    <div class="bg-blue-600 text-white p-2.5 rounded-lg rounded-tr-none text-xs max-w-[85%] shadow-sm leading-relaxed">
+                        ${text.replace(/\n/g, '<br>')}
+                    </div>
+                    <div class="w-7 h-7 rounded-full bg-blue-500 text-white flex items-center justify-center text-xs flex-shrink-0 font-bold">我</div>
+                `;
+            } else if (sender === "ai") {
+                container.innerHTML = `
+                    <div class="w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs flex-shrink-0">AI</div>
+                    <div class="bg-amber-50 text-amber-900 p-2.5 rounded-lg rounded-tl-none text-xs max-w-[85%] shadow-sm leading-relaxed">
+                        ${text.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}
+                    </div>
+                `;
+            } else if (sender === "ai-pending") {
+                container.innerHTML = `
+                    <div class="w-7 h-7 rounded-full bg-amber-500 text-white flex items-center justify-center text-xs flex-shrink-0">AI</div>
+                    <div class="bg-gray-100 text-gray-500 p-2.5 rounded-lg rounded-tl-none text-xs max-w-[85%] shadow-sm flex items-center space-x-2">
+                        <svg class="animate-spin h-3.5 w-3.5 text-amber-500" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        <span>${text}</span>
+                    </div>
+                `;
+            }
+            chatHistory.appendChild(container);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+            return bubbleId;
+        }
+
+        function removePendingBubble(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        function sendQuickPrompt(promptText) {
+            document.getElementById('aiQueryInput').value = promptText;
+            sendAiChatMessage();
+        }
+
+        // 8. AI 功能三：通过拍照/上传报告图片快速识别 (AI OCR) ✨
+        async function runImageOCR(file) {
+            const loading = document.getElementById('ocrLoading');
+            loading.classList.remove('hidden');
+
+            const reader = new FileReader();
+            reader.onloadend = async () => {
+                const base64Data = reader.result.split(',')[1];
+                const systemPrompt = "你是一个高级文档分析系统。请仔细提取这份车辆机械检测报告或证件照片中文字内容，转换为标准的JSON格式返回。千万不要返回Markdown代码外层，直接返回纯JSON字符串本身。";
+                const userPrompt = "提取以下字段并返回 JSON (如果有未提取到的，请返回空字符串): " +
+                    "{ reportNo: '报告编号, 提取报告左上角、右上角或正文里的编号, 如KK202604141N', " +
+                    "  entrustUnit: '委托单位名称', " +
+                    "  deviceModel: '设备名称及型号, 如汽车起重机', " +
+                    "  licensePlate: '车牌照号/产品编号', " +
+                    "  inspectDate: '检验日期，如2026年04月14日' }";
+
+                const payload = {
+                    contents: [{
+                        role: "user",
+                        parts: [
+                            { text: userPrompt },
+                            { inlineData: { mimeType: file.type, data: base64Data } }
+                        ]
+                    }],
+                    systemInstruction: { parts: [{ text: systemPrompt }] },
+                    generationConfig: {
+                        responseMimeType: "application/json",
+                        responseSchema: {
+                            type: "OBJECT",
+                            properties: {
+                                reportNo: { type: "STRING" },
+                                entrustUnit: { type: "STRING" },
+                                deviceModel: { type: "STRING" },
+                                licensePlate: { type: "STRING" },
+                                inspectDate: { type: "STRING" }
+                            },
+                            required: ["reportNo"]
+                        }
+                    }
+                };
+
+                try {
+                    const responseData = await fetchGemini(payload);
+                    const rawText = responseData.candidates?.[0]?.content?.parts?.[0]?.text;
+                    const parsed = JSON.parse(rawText);
+
+                    loading.classList.add('hidden');
+
+                    if (parsed && parsed.reportNo) {
+                        const cleanNo = parsed.reportNo.trim().toUpperCase();
+                        
+                        mockDatabase[cleanNo] = {
+                            reportNo: cleanNo,
+                            entrustUnit: parsed.entrustUnit || "由 AI 自动扫描识别",
+                            deviceModel: parsed.deviceModel || "汽车起重机 (AI识别)",
+                            licensePlate: parsed.licensePlate || "未在图像中提取",
+                            inspectDate: parsed.inspectDate || "2026年04月14日",
+                            vin: "lS0R" + Math.random().toString(36).substr(2, 10).toUpperCase(),
+                            weight: "25000kg",
+                            manufacturer: parsed.deviceModel ? parsed.deviceModel.slice(0, 4) : "工程特种设备"
+                        };
+
+                        document.getElementById('reportNoInput').value = cleanNo;
+                        showToast(`✨ AI 识别成功！发现报告号：${cleanNo}`);
+                        executeQuery(cleanNo);
+                    } else {
+                        showToast("AI 识别完成，但未在图像中找到检验报告的有效编号");
+                    }
+                } catch (err) {
+                    loading.classList.add('hidden');
+                    showToast("AI 图像文字读取遇到障碍，请重新上传一张清晰的水平视线图片");
+                }
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // 9. 侧边栏及按钮交互逻辑绑定
+        function toggleSidebar(open) {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (open) {
+                sidebar.classList.remove('-translate-x-full');
+                overlay.classList.remove('hidden');
+            } else {
+                sidebar.classList.add('-translate-x-full');
+                overlay.classList.add('hidden');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('menuBtn').addEventListener('click', () => toggleSidebar(true));
+            document.getElementById('closeMenuBtn').addEventListener('click', () => toggleSidebar(false));
+            document.getElementById('sidebarOverlay').addEventListener('click', () => toggleSidebar(false));
+
+            document.getElementById('searchSubmitBtn').addEventListener('click', () => {
+                const num = document.getElementById('reportNoInput').value;
+                executeQuery(num);
+            });
+
+            document.getElementById('reportNoInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    const num = document.getElementById('reportNoInput').value;
+                    executeQuery(num);
+                }
+            });
+
+            document.getElementById('aiInterpretBtn').addEventListener('click', runReportInterpretation);
+            document.getElementById('sendAiQueryBtn').addEventListener('click', sendAiChatMessage);
+            document.getElementById('aiQueryInput').addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendAiChatMessage();
+            });
+
+            document.getElementById('ocrFileInput').addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    runImageOCR(file);
+                }
+            });
+
+            // 初始化扫描 URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const scanNo = urlParams.get('no');
+            if (scanNo) {
+                executeQuery(scanNo);
+            } else {
+                switchPage('home');
+            }
+        });
+    </script>
+</body>
+</html>
