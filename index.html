@@ -3,6 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工程机械设备检验检测查询系统</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; background-color: #f4f6f9; color: #333; line-height: 1.6; }
+        .container { max-width: 480px; margin: 0 auto; background: #fff; min-height: 100vh; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+        .header { background: #1890ff; color: #fff; padding: 20px 15px; text-align: center; }
+        .header h1 { font-size: 18px; font-weight: 600; margin-bottom: 5px; }
+        .header p { font-size: 12px; opacity: 0.8; }
+        .search-box { padding: 20px 15px; background: #fff; border-bottom: 1px solid #eee; }
+        .input-group { display: flex; margin-bottom: 10px; }
+        .input-group input { flex: 1; padding: 10px 12px; border: 1px solid #d9d9d9; border-radius: 4px 0 0 4px; font-size: 14px; outline: none; }
+        .input-group button { padding: 10px 16px; background: #1890ff; color: #fff; border: none; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 14px; }
+        .quick-list { font-size: 12px; color: #666; }
+        .quick-item { color: #1890ff; cursor: pointer; text-decoration: underline; margin-left: 5px; }
+        .result-card { padding: 15px; display: none; }
+        .status-tag { display: inline-block; padding: 4px 12px; background: #52c41a; color: #fff; border-radius: 2px; font-size: 12px; font-weight: bold; margin-bottom: 15px; }
+        .info-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 13px; }
+        .info-table td { padding: 8px 4px; border-bottom: 1px solid #f0f0f0; }
+        .info-table td.label { color: #8c8c8c; width: 35%; }
+        .info-table td.val { color: #262626; font-weight: 500; }
+        .not-found { padding: 30px 15px; text-align: center; color: #ff4d4f; display: none; font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>专业设备年检 / 报告查询</h1>
+            <p>权威检测 · 扫码直连 · 安全合规</p>
+        </div>
+
+        <div class="search-box">
+            <div class="input-group">
+                <input type="text" id="reportNoInput" placeholder="请输入报告编号" value="JC2026JC1225081">
+                <button onclick="performSearch()">查询</button>
+            </div>
+            <div class="quick-list">
+                当前编号：<span class="quick-item" onclick="fillAndSearch('JC2026JC1225081')">JC2026JC1225081 (三一牌-鄂FFD135)</span>
+            </div>
+        </div>
+
+        <div id="resultArea" class="result-card">
+            <div class="status-tag">检验结论：合格</div>
+            <table class="info-table">
+                <tr><td class="label">报告编号</td><td class="val" id="resNo">-</td></tr>
+                <tr><td class="label">车牌号码</td><td class="val" id="resPlate">-</td></tr>
+                <tr><td class="label">设备名称/品牌</td><td class="val" id="resBrand">-</td></tr>
+                <tr><td class="label">委托单位</td><td class="val" id="resCompany">-</td></tr>
+                <tr><td class="label">检验类别</td><td class="val" id="resType">定期检验 / 年检</td></tr>
+                <tr><td class="label">检验日期</td><td class="val" id="resDate">2026-04-14</td></tr>
+                <tr><td class="label">有效截止日期</td><td class="val" id="resExpire">2027-04-13</td></tr>
+            </table>
+        </div>
+
+        <div id="notFoundArea" class="not-found">
+            未查询到对应的报告记录，请核对报告编号后重试。
+        </div>
+    </div>
+
+    <script>
+        // 核心数据库
+        const dataStore = {
+            "JC2026JC1225081": {
+                no: "JC2026JC1225081",
+                plate: "鄂 FFD135",
+                brand: "三一牌起重机",
+                company: "湖北汇天建设股份有限公司",
+                status: "合格",
+                date: "2026-04-14",
+                expire: "2027-04-13"
+            }
+        };
+
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        function performSearch() {
+            const queryNo = document.getElementById('reportNoInput').value.trim();
+            const resultArea = document.getElementById('resultArea');
+            const notFoundArea = document.getElementById('notFoundArea');
+
+            if (dataStore[queryNo]) {
+                const data = dataStore[queryNo];
+                document.getElementById('resNo').innerText = data.no;
+                document.getElementById('resPlate').innerText = data.plate;
+                document.getElementById('resBrand').innerText = data.brand;
+                document.getElementById('resCompany').innerText = data.company;
+                document.getElementById('resDate').innerText = data.date;
+                document.getElementById('resExpire').innerText = data.expire;
+
+                resultArea.style.display = 'block';
+                notFoundArea.style.display = 'none';
+            } else {
+                resultArea.style.display = 'none';
+                notFoundArea.style.display = 'block';
+            }
+        }
+
+        function fillAndSearch(no) {
+            document.getElementById('reportNoInput').value = no;
+            performSearch();
+        }
+
+        // 页面加载自动识别 URL 参数或执行默认查询
+        window.onload = function() {
+            const urlNo = getQueryParam('no');
+            if (urlNo) {
+                document.getElementById('reportNoInput').value = urlNo;
+            }
+            performSearch();
+        };
+    </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>本公司专业检测工程机械设备</title>
     <!-- 引入 Tailwind CSS 用于快速构建美观的响应式UI -->
     <script src="https://cdn.tailwindcss.com"></script>
